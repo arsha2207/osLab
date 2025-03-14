@@ -1,6 +1,10 @@
+ //used system calls are fork(), getpid(), exit(), wait(), execlp()
+
 #include<stdio.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<sys/wait.h>
+
 int main()
 {
     pid_t pid = fork();
@@ -16,6 +20,8 @@ int main()
         var=var+1;
         printf("%d\n",var);
         printf("the pid is %d\n",getpid());
+        execlp("date","date",NULL);
+        wait(NULL);
     }
     else
     {
@@ -23,5 +29,7 @@ int main()
         var=var+2;
         printf("%d\n",var);
         printf("the pid is %d\n",getpid());
+        wait(NULL);
     }
 }
+
